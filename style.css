@@ -1,0 +1,1231 @@
+/* Base Styles & Reset */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary: #00f0ff;
+    --primary-dark: #00d0dd;
+    --secondary: #ff00a0;
+    --accent: #fffc00;
+    --dark: #0a0a16;
+    --darker: #050510;
+    --light: #e1e1e6;
+    --gray: #8a8a9a;
+    --bg-color: #0a0a16;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--light);
+    overflow-x: hidden;
+    cursor: none;
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary);
+}
+
+/* Noise Effect */
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.2s;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.cursor.active, .cursor-follower.active {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+/* Header */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 0, 30, 0.9), rgba(0, 0, 15, 0.95));
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(0, 0, 20, 0) 70%);
+    z-index: 0;
+}
+
+/* Glitch Effect */
+.glitch-container {
+    position: relative;
+    z-index: 1;
+}
+
+.glitch {
+    font-family: 'Share Tech Mono', monospace;
+    position: relative;
+    color: var(--light);
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--secondary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--primary);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+        transform: skew(0.85deg);
+    }
+    5% {
+        clip: rect(70px, 9999px, 51px, 0);
+        transform: skew(0.62deg);
+    }
+    10% {
+        clip: rect(7px, 9999px, 5px, 0);
+        transform: skew(0.42deg);
+    }
+    15% {
+        clip: rect(73px, 9999px, 5px, 0);
+        transform: skew(0.12deg);
+    }
+    20% {
+        clip: rect(42px, 9999px, 33px, 0);
+        transform: skew(0.49deg);
+    }
+    25% {
+        clip: rect(92px, 9999px, 36px, 0);
+        transform: skew(0.32deg);
+    }
+    30% {
+        clip: rect(6px, 9999px, 92px, 0);
+        transform: skew(0.47deg);
+    }
+    35% {
+        clip: rect(99px, 9999px, 24px, 0);
+        transform: skew(0.01deg);
+    }
+    40% {
+        clip: rect(13px, 9999px, 21px, 0);
+        transform: skew(0.83deg);
+    }
+    45% {
+        clip: rect(76px, 9999px, 69px, 0);
+        transform: skew(0.25deg);
+    }
+    50% {
+        clip: rect(73px, 9999px, 3px, 0);
+        transform: skew(0.9deg);
+    }
+    55% {
+        clip: rect(95px, 9999px, 84px, 0);
+        transform: skew(0.39deg);
+    }
+    60% {
+        clip: rect(23px, 9999px, 69px, 0);
+        transform: skew(0.56deg);
+    }
+    65% {
+        clip: rect(72px, 9999px, 48px, 0);
+        transform: skew(0.91deg);
+    }
+    70% {
+        clip: rect(50px, 9999px, 86px, 0);
+        transform: skew(0.89deg);
+    }
+    75% {
+        clip: rect(41px, 9999px, 23px, 0);
+        transform: skew(0.86deg);
+    }
+    80% {
+        clip: rect(41px, 9999px, 38px, 0);
+        transform: skew(0.66deg);
+    }
+    85% {
+        clip: rect(10px, 9999px, 94px, 0);
+        transform: skew(0.65deg);
+    }
+    90% {
+        clip: rect(83px, 9999px, 99px, 0);
+        transform: skew(0.69deg);
+    }
+    95% {
+        clip: rect(8px, 9999px, 43px, 0);
+        transform: skew(0.16deg);
+    }
+    100% {
+        clip: rect(48px, 9999px, 42px, 0);
+        transform: skew(0.36deg);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(60px, 9999px, 42px, 0);
+        transform: skew(0.65deg);
+    }
+    5% {
+        clip: rect(93px, 9999px, 84px, 0);
+        transform: skew(0.7deg);
+    }
+    10% {
+        clip: rect(41px, 9999px, 24px, 0);
+        transform: skew(0.19deg);
+    }
+    15% {
+        clip: rect(57px, 9999px, 70px, 0);
+        transform: skew(0.25deg);
+    }
+    20% {
+        clip: rect(35px, 9999px, 53px, 0);
+        transform: skew(0.82deg);
+    }
+    25% {
+        clip: rect(62px, 9999px, 59px, 0);
+        transform: skew(0.83deg);
+    }
+    30% {
+        clip: rect(94px, 9999px, 41px, 0);
+        transform: skew(0.38deg);
+    }
+    35% {
+        clip: rect(67px, 9999px, 78px, 0);
+        transform: skew(0.85deg);
+    }
+    40% {
+        clip: rect(34px, 9999px, 26px, 0);
+        transform: skew(0.12deg);
+    }
+    45% {
+        clip: rect(15px, 9999px, 64px, 0);
+        transform: skew(0.65deg);
+    }
+    50% {
+        clip: rect(80px, 9999px, 2px, 0);
+        transform: skew(0.09deg);
+    }
+    55% {
+        clip: rect(4px, 9999px, 58px, 0);
+        transform: skew(0.71deg);
+    }
+    60% {
+        clip: rect(19px, 9999px, 55px, 0);
+        transform: skew(0.18deg);
+    }
+    65% {
+        clip: rect(68px, 9999px, 22px, 0);
+        transform: skew(0.94deg);
+    }
+    70% {
+        clip: rect(24px, 9999px, 60px, 0);
+        transform: skew(0.59deg);
+    }
+    75% {
+        clip: rect(87px, 9999px, 94px, 0);
+        transform: skew(0.26deg);
+    }
+    80% {
+        clip: rect(67px, 9999px, 40px, 0);
+        transform: skew(0.72deg);
+    }
+    85% {
+        clip: rect(29px, 9999px, 55px, 0);
+        transform: skew(0.76deg);
+    }
+    90% {
+        clip: rect(17px, 9999px, 33px, 0);
+        transform: skew(0.36deg);
+    }
+    95% {
+        clip: rect(60px, 9999px, 72px, 0);
+        transform: skew(0.09deg);
+    }
+    100% {
+        clip: rect(98px, 9999px, 77px, 0);
+        transform: skew(0.43deg);
+    }
+}
+
+@keyframes glitch-skew {
+    0% {
+        transform: skew(-1deg);
+    }
+    10% {
+        transform: skew(0.5deg);
+    }
+    20% {
+        transform: skew(0.8deg);
+    }
+    30% {
+        transform: skew(0.4deg);
+    }
+    40% {
+        transform: skew(-0.8deg);
+    }
+    50% {
+        transform: skew(-0.2deg);
+    }
+    60% {
+        transform: skew(1deg);
+    }
+    70% {
+        transform: skew(-0.5deg);
+    }
+    80% {
+        transform: skew(2deg);
+    }
+    90% {
+        transform: skew(1deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+/* Typing Effect */
+.subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.typing {
+    border-right: 2px solid var(--primary);
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 4s steps(30) 1s 1 normal both, blink 1s steps(1) infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 22, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    padding: 1rem 0;
+    background: rgba(5, 5, 16, 0.95);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-link {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--light);
+    position: relative;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--darker), var(--dark));
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23003fff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+.hero-text {
+    width: 55%;
+    padding-right: 2rem;
+}
+
+.hero-text h2 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 15px;
+    background-color: rgba(0, 240, 255, 0.2);
+    z-index: -1;
+}
+
+.hero-text p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: var(--gray);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--darker);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary), #ff0055);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.cta-button:hover {
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover::before {
+    left: 0;
+}
+
+.hero-image {
+    width: 45%;
+    position: relative;
+}
+
+.image-glitch {
+    width: 100%;
+    height: 350px;
+    background-image: url('/api/placeholder/500/350');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.image-glitch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.2) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    animation: glitch-scan 3s linear infinite;
+}
+
+.scanline {
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 240, 255, 0.5);
+    position: absolute;
+    top: 50%;
+    box-shadow: 0 0 15px 1px var(--primary);
+    animation: scanline 6s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        top: 0%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes glitch-scan {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* Section Styles */
+section {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.dot {
+    color: var(--primary);
+}
+
+.line {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
+    margin: 0 auto;
+}
+
+/* About Section */
+#about {
+    background-color: rgba(5, 5, 15, 0.7);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 4rem;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 125%;
+}
+
+.avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/api/placeholder/400/500');
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.frame-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--primary);
+    z-index: 1;
+}
+
+.top-left {
+    top: -5px;
+    left: -5px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.top-right {
+    top: -5px;
+    right: -5px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.bottom-left {
+    bottom: -5px;
+    left: -5px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+.about-text {
+    flex: 1.5;
+}
+
+.about-text h3 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    flex: 1;
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Projects Section */
+#projects {
+    background: linear-gradient(to bottom, var(--dark), var(--darker));
+    overflow: hidden;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-item {
+    position: relative;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    height: 250px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/api/placeholder/350/250');
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 20, 0.9) 0%, rgba(0, 0, 20, 0.5) 50%, rgba(0, 0, 20, 0.1) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.project-item:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-item:hover .project-image {
+    transform: scale(1.1);
+}
+
+.project-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.project-overlay p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.project-link {
+    align-self: flex-start;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.project-link::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+/* Skills Section */
+#skills {
+    background-color: rgba(5, 5, 15, 0.7);
+}
+
+.skills-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.skill-category h3 {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.skill-category h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--primary), transparent);
+}
+
+.skill-item {
+    margin-bottom: 1.5rem;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-level {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    position: relative;
+    transition: width 1s ease;
+}
+
+.skill-level::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: white;
+    animation: blink 2s infinite;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tool-item {
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.tool-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tool-item i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.tool-item span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+}
+
+/* Contact Section */
+#contact {
+    background: linear-gradient(to bottom, var(--dark), var(--darker));
+    position: relative;
+    overflow: hidden;
+}
+
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23003fff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-text, .contact-form {
+    flex: 1;
+}
+
+.contact-text h3 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+}
+
+.contact-info {
+    margin: 2rem 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-item i {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    color: var(--primary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--primary);
+    color: var(--darker);
+    transform: translateY(-5px);
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(5, 5, 15, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 30, 0.3);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    color: var(--light);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.submit-button {
+    padding: 1rem 2rem;
+    background: var(--primary);
+    color: var(--darker);
+    border: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.submit-button:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--darker);
+    padding: 2rem 0;
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.footer-logo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.footer-text {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--gray);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .hero-content, .about-content, .contact-content {
+        flex-direction: column;
+    }
+    
+    .hero-text, .hero-image, .about-text, .about-image, .contact-text, .contact-form {
+        width: 100%;
+    }
+    
+    .hero-text {
+        padding-right: 0;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+    
+    .about-image {
+        margin-bottom: 3rem;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .glitch {
+        font-size: 3.5rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
