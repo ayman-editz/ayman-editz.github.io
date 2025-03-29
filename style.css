@@ -695,11 +695,12 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('./merged_image.png'); 
+    background-image: url('./IMG_5742.JPG');
     background-size: cover;
     background-position: center;
-    border: 1px solid rgba(0, 240, 255, 0.3);
+    border: 1px solid rgba(0, 240, 255, 0.3); 
 }
+
 
 
 
